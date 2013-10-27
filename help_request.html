@@ -1,0 +1,31 @@
+<head>
+  <title>help_request</title>
+</head>
+
+<body>
+  {{renderPage}}
+</body>
+
+<template name="request">
+	<div class='container'>
+		<div class='content'>
+			<h1>Request Help!</h1>
+			<p class='lead'>{{greeting}}</p>
+			<input name='student' type='text' class='input-lg' placeholder="Student Name">
+			<button type="button" value="Click Here for HELP!" class='btn btn-primary btn-lg'>Click Here for HELP!</button>
+		</div>
+	</div>
+</template>
+
+<template name="teacher">
+	<div class='container'>
+		<div class='students'>
+			<h1>Students</h1>
+				<ul> 
+					{{#each students}}
+						<li data-id={{_id}} class='lead'><input type='checkbox' class='chbx'>{{student}}</li>
+					{{/each}}
+				</ul>
+		</div>
+	</div>
+</template>
