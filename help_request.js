@@ -23,10 +23,15 @@ if (Meteor.isClient) {
     'click button' : function () {
       // template data, if any, is available in 'this'
       $('.content').css('display', 'none');
+      var newStudent = $('input').val();
       Students.insert ({
-        student: $('input').val()
+        student: newStudent
       });
       $('.container').append('<h1>Help is on the Way</h1>');
+      console.log(Students.find());
+      // if(newStudent._id === removeID){
+      //   $('.content').css('display', 'block');
+      // }
     }
   });
 
@@ -34,14 +39,11 @@ if (Meteor.isClient) {
     return Students.find();
   };
 
-  //this event should remove name from DOM, remove instance in
-  //db and revert the students screen back to request form
+  //revert the students screen back to request form
   Template.teacher.events({
     'change input.chbx' : function () {
-      var removeID = $(this).attr('data-id');
-      Students.findByIdAndRemove(removeID, function (err, id) {
-        console.log(removeID);
-      });
+      var removeID = this._id;
+      return Students.remove(removeID);
     }
   });
 
